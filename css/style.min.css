@@ -687,7 +687,6 @@ body.ie ._ibg img {
   overflow: hidden;
 }
 ._swiper .swiper-wrapper {
-  width: 100%;
   box-sizing: content-box;
   display: flex;
   position: relative;
@@ -739,6 +738,15 @@ body.ie ._ibg img {
   .swiper-pagination-bullet {
     display: none;
   }
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transition: opacity 0.3s ease 0s;
+}
+
+.swiper-slide-next, .swiper-slide-prev {
+  opacity: 0;
 }
 
 ._tabs-block {
@@ -960,6 +968,9 @@ body.ie ._ibg img {
   font-size: 14px;
   line-height: 17px;
   color: inherit;
+}
+.footer__item-list:hover {
+  text-decoration: underline;
 }
 
 .main {
@@ -1508,23 +1519,16 @@ body.ie ._ibg img {
 }
 
 .advantages-slider {
-  padding: 0 40px;
+  padding: 0 20px;
   height: 700px;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-@media (max-width: 767.98px) {
-  .advantages-slider {
-    padding: 0 20px;
-  }
 }
 .advantages-slider .swiper-wrapper {
   display: flex;
   align-items: center !important;
 }
 .advantages-slider__slide {
-  margin: 0 auto;
   background: #F5F5F5;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 6px;

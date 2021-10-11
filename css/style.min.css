@@ -740,15 +740,16 @@ body.ie ._ibg img {
   }
 }
 
-.swiper-slide-active {
-  opacity: 1;
-  transition: opacity 0.3s ease 0s;
-}
+@media (max-width: 920px) {
+  .swiper-slide-active {
+    opacity: 1;
+    transition: opacity 0.3s ease 0s;
+  }
 
-.swiper-slide-next, .swiper-slide-prev {
-  opacity: 0;
+  .swiper-slide-next, .swiper-slide-prev {
+    opacity: 0;
+  }
 }
-
 ._tabs-block {
   display: none;
 }

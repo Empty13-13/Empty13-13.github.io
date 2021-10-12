@@ -901,6 +901,19 @@ body.ie ._ibg img {
     font-size: 36px;
   }
 }
+.footer__logo span {
+  background: url("../img/main/yellow-heart.png") 0 0/contain no-repeat;
+  width: 21px;
+  height: 17px;
+  display: inline-flex;
+  margin: 0px -12px -8px -5px;
+  width: 21px;
+}
+@media (max-width: 1205px) {
+  .footer__logo span {
+    width: calc(19px + 2 * ((100vw - 320px) / 885));
+  }
+}
 .footer__copyright {
   font-style: normal;
   font-weight: normal;
@@ -1047,7 +1060,7 @@ body.ie ._ibg img {
   }
 }
 .main__title span {
-  background: url("../img/main/yellow-heart.png") 0 0 no-repeat;
+  background: url("../img/main/yellow-heart.png") 0 0/contain no-repeat;
   width: 21px;
   height: 17px;
   display: inline-flex;
@@ -1287,7 +1300,6 @@ body.ie ._ibg img {
 }
 
 .slider__item_active.first {
-  transform: scale(0.8) !important;
   margin: 0 -11px;
   z-index: 3;
   visibility: visible;
@@ -1299,7 +1311,6 @@ body.ie ._ibg img {
   }
 }
 .slider__item_active.prev {
-  transform: scale(0.9) !important;
   margin: 0 -50px;
   z-index: 4;
   visibility: visible;

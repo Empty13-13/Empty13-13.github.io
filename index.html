@@ -3632,14 +3632,14 @@
         <div class="level__wrapper">
           <h2 class="level__title">Пора выходить на новый уровень!</h2>
           <div class="level__body">
-            <form class="level__form form-level">
+            <form class="level__form form-level" action="send.php" method="post">
               <div class="form-level__body">
-                <input placeholder="Введите E-mail" type="text" name="email"
-                       class="form-level__input form-level__email">
-                <input placeholder="Введите Имя" type="text" name="name" class="form-level__input form-level__name">
+                <input placeholder="Введите E-mail" type="email" name="email"
+                       class="form-level__input form-level__email" required>
+                <input placeholder="Введите Имя" type="text" name="name" class="form-level__input form-level__name" required>
                 <input placeholder="Введите номер телефона" type="tel" name="tel"
-                       class="form-level__input form-level__tel">
-                <input value="Получить консультацию" type="button" type="submit" name="email"
+                       class="form-level__input form-level__tel" required>
+                <input value="Получить консультацию" type="submit" name="email"
                        class="form-level__input form-level__btn" id="">
               </div>
             </form>

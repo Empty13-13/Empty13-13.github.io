@@ -1,0 +1,150 @@
+.hljs._nightOwl {
+  background: #011627;
+  color: #d6deeb;
+}
+
+/* General Purpose */
+.hljs-keyword._nightOwl {
+  color: #c792ea;
+  font-style: italic;
+}
+.hljs-built_in._nightOwl {
+  color: #addb67;
+  font-style: italic;
+}
+.hljs-type._nightOwl {
+  color: #82aaff;
+}
+.hljs-literal._nightOwl {
+  color: #ff5874;
+}
+.hljs-number._nightOwl {
+  color: #F78C6C;
+}
+.hljs-regexp._nightOwl {
+  color: #5ca7e4;
+}
+.hljs-string._nightOwl {
+  color: #ecc48d;
+}
+.hljs-subst._nightOwl {
+  color: #d3423e;
+}
+.hljs-symbol._nightOwl {
+  color: #82aaff;
+}
+.hljs-class._nightOwl {
+  color: #ffcb8b;
+}
+.hljs-function._nightOwl {
+  color: #82AAFF;
+}
+.hljs-title._nightOwl {
+  color: #DCDCAA;
+  font-style: italic;
+}
+.hljs-params._nightOwl {
+  color: #7fdbca;
+}
+
+/* Meta */
+.hljs-comment._nightOwl {
+  color: #637777;
+  font-style: italic;
+}
+.hljs-doctag._nightOwl {
+  color: #7fdbca;
+}
+.hljs-meta._nightOwl {
+  color: #82aaff;
+}
+.hljs-meta .hljs-keyword._nightOwl {
+
+  color: #82aaff;
+}
+.hljs-meta .hljs-string._nightOwl {
+  color: #ecc48d;
+}
+
+/* Tags, attributes, config */
+.hljs-section._nightOwl {
+  color: #82b1ff;
+}
+.hljs-tag,
+.hljs-name._nightOwl {
+  color: #7fdbca;
+}
+.hljs-attr._nightOwl {
+  color: #7fdbca;
+}
+.hljs-attribute._nightOwl {
+  color: #80cbc4;
+}
+.hljs-variable._nightOwl {
+  color: #addb67;
+}
+
+/* Markup */
+.hljs-bullet._nightOwl {
+  color: #d9f5dd;
+}
+.hljs-code._nightOwl {
+  color: #80CBC4;
+}
+.hljs-emphasis._nightOwl {
+  color: #c792ea;
+  font-style: italic;
+}
+.hljs-strong._nightOwl {
+  color: #addb67;
+  font-weight: bold;
+}
+.hljs-formula._nightOwl {
+  color: #c792ea;
+}
+.hljs-link._nightOwl {
+  color: #ff869a;
+}
+.hljs-quote._nightOwl {
+  color: #697098;
+  font-style: italic;
+}
+
+/* CSS */
+.hljs-selector-tag._nightOwl {
+  color: #ff6363;
+}
+
+.hljs-selector-id._nightOwl {
+  color: #fad430;
+}
+
+.hljs-selector-class._nightOwl {
+  color: #addb67;
+  font-style: italic;
+}
+
+.hljs-selector-attr,
+.hljs-selector-pseudo._nightOwl {
+  color: #c792ea;
+  font-style: italic;
+}
+
+/* Templates */
+.hljs-template-tag._nightOwl {
+  color: #c792ea;
+}
+.hljs-template-variable._nightOwl {
+  color: #addb67;
+}
+
+/* diff */
+.hljs-addition._nightOwl {
+  color: #addb67ff;
+  font-style: italic;
+}
+
+.hljs-deletion._nightOwl {
+  color: #EF535090;
+  font-style: italic;
+}

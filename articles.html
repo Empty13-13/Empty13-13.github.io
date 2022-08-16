@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="ru"> <head>
+	<title>Интересные статьи</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head><body>	<div class="wrapper">    <header class="header">
+  <div class="header__wrapper">
+    <div class="header__up up-header">
+      <div class="up-header__content _container">
+        <a href="/" class="up-header__logo">
+          <picture>
+            <source srcset="img/logo.svg" type="image/webp">
+            <img src="img/logo.svg" alt=""/></picture>
+        </a>
+        <a href="#" class="up-header__btn-search">Поиск</a>
+      </div>
+    </div>
+    <div class="header__menu menu">
+      <div class="menu__content _container">
+        <form onsubmit="changeAction(this);" method="GET" class="menu__body">
+          <div class="menu__column">
+            <label for="from" class="menu__title-column">Откуда</label>
+            <input id="autocomplete" onfocus="this.select()" autocomplete="off" type="text" data-value=""
+                   class="menu__item input _req _text"/>
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Куда</label>
+            <input id="autocomplete" onfocus="this.select()" autocomplete="off" type="text" data-value=""
+                   class="menu__item input _req _text"/>
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Туда</label>
+            <div class="input-calendar">
+              <input autocomplete="off" type="text" data-value="Обратно"
+                     class="menu__item inp-calendar input _req _calendar" readonly/>
+              <div class="calendars">
+                <div class="calendars__top">
+                  <div class="calendars__date-text">Выберите дату отправления</div>
+                  <div class="calendars__back-btn btn">Обратный битет не нужен</div>
+                  <div class="calendars__close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18"
+                         height="18" viewBox="0 0 18 18">
+                      <defs>
+                        <path id="avzva"
+                              d="M691.485 160.07l-1.414 1.415-7.071-7.071-7.071 7.071-1.414-1.414 7.07-7.071-7.07-7.071 1.414-1.415 7.07 7.071 7.072-7.07 1.414 1.414-7.07 7.07z"/>
+                      </defs>
+                      <g>
+                        <g transform="translate(-674 -144)">
+                          <use fill="#0079bd" xlink:href="#avzva"/>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <hr class="calendars__hr">
+                <div class="calendars__down">
+                  <div class="arrows">
+                    <picture>
+                      <source srcset="img/icons/arrow-calendar.svg" type="image/webp">
+                      <img class="prev-mth" src="img/icons/arrow-calendar.svg" alt=""></picture>
+                  </div>
+                  <div class="calendars__date">
+                    <div class="dates">
+                      <div class="month">
+                        <div class="mth"></div>
+                      </div>
+                      <div class="days-of-week">
+                        <div class="day-of-week">ПН</div>
+                        <div class="day-of-week">ВТ</div>
+                        <div class="day-of-week">СР</div>
+                        <div class="day-of-week">ЧТ</div>
+                        <div class="day-of-week">ПТ</div>
+                        <div class="day-of-week">СБ</div>
+                        <div class="day-of-week">ВС</div>
+                      </div>
+
+                      <div class="days"></div>
+                    </div>
+                    <div class="dates2">
+                      <div class="month">
+                        <div class="mth"></div>
+                      </div>
+                      <div class="days-of-week">
+                        <div class="day-of-week">ПН</div>
+                        <div class="day-of-week">ВТ</div>
+                        <div class="day-of-week">СР</div>
+                        <div class="day-of-week">ЧТ</div>
+                        <div class="day-of-week">ПТ</div>
+                        <div class="day-of-week">СБ</div>
+                        <div class="day-of-week">ВС</div>
+                      </div>
+
+                      <div class="days"></div>
+                    </div>
+                  </div>
+                  <div class="arrows">
+                    <picture>
+                      <source srcset="img/icons/arrow-calendar.svg" type="image/webp">
+                      <img class="next-mth" src="img/icons/arrow-calendar.svg" alt=""></picture>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Обратно</label>
+            <div class="input-calendar">
+              <input autocomplete="off" type="text" data-value="Обратно"
+                     class="menu__item inp-calendar input _calendar2" readonly/>
+            </div>
+          </div>
+          <div class="menu__column">
+            <h2 class="menu__title-column">Кол-во пассажиров</h2>
+            <div class="menu__select input inp-peoples" tabindex="0">
+              <div class="menu__select-num">2 пассажира</div>
+              <div class="menu__peoples-filter peoples-filter">
+                <div class="peoples-filter__body">
+                  <div class="peoples-filter__column">
+                    <div class="peoples-filter__text">Взрослые
+                      <small>Старше 12 лет</small>
+                    </div>
+                    <div class="peoples-filter__text">Дети
+                      <small>От 2 до 12 лет</small>
+                    </div>
+                    <div class="peoples-filter__text">Взрослые
+                      <small>до 2 лет,</br>
+                             без места</small>
+                    </div>
+                  </div>
+                  <div class="peoples-filter__column">
+                    <div class="peoples-filter__grown-calc">
+                      <div class="peoples-filter__grown-minus _minus _active" tabindex="1"></div>
+                      <div class="peoples-filter__grown-num _num">2</div>
+                      <div class="peoples-filter__grown-plus _plus _active" tabindex="2"></div>
+                    </div>
+                    <div class="peoples-filter__child-calc">
+                      <div class="peoples-filter__child-minus _minus" tabindex="3"></div>
+                      <div class="peoples-filter__child-num _num">0</div>
+                      <div class="peoples-filter__child-plus _plus _active" tabindex="4"></div>
+                    </div>
+                    <div class="peoples-filter__baby-calc">
+                      <div class="peoples-filter__baby-minus _minus" tabindex="5"></div>
+                      <div class="peoples-filter__baby-num _num">0</div>
+                      <div class="peoples-filter__baby-plus _plus _active" tabindex="6">
+                        <div class="peoples-filter__baby-plus-tip unselectable">Не более одного младенеца (без места)
+                                                                                на
+                                                                                одного взрослого. Если младенцев
+                                                                                больше, добавьте ещё пассажиров в
+                                                                                категории «Дети до 12 лет».
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="menu__column">
+            <div class="menu__btn btn unselectable">Полетели!</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <main class="page">			<section class="slider-block">  <div class="slider-block__wrapper">    <div class='slider-block__content _container'>      <div class="slider-block__slider _swiper">        <div class="slider-block__slide slide">          <h3 class="slide__title">Дешёвые авиабилеты со скидой более 50% </h3>          <p class="slide__text">В любые точки мира <span>с вылетом из Москвы</span></p>        </div>        <div class="slider-block__slide slide">          <h3 class="slide__title">Дешёвые авиабилеты со скидой более 50% </h3>          <p class="slide__text">В любые точки мира с вылетом из Москвы</p>        </div>        <div class="slider-block__slide slide">          <h3 class="slide__title">Дешёвые авиабилеты со скидой более 50% </h3>          <p class="slide__text">В любые точки мира с вылетом из Москвы</p>        </div>      </div>      <div class="slider-block__next"></div>      <div class="slider-block__prev"></div>      <div class="swiper-pagination"></div>      <a class="slider-block__btn btn">Показать билеты со скидкой</a>    </div>  </div></section>			<div class="ticket__top">				<div class='ticket__content _container'>					<div class="ticket__top-block">						<a href="" class="ticket__btn btn">На главную</a>					</div>				</div>			</div>			<div class="articles-top">				<div class='articles-top__content _container'>					<div class="articles-top__title">Интересные статьи</div>					<div class="articles-top__filters">						<div class="articles-top__column">							<div class="articles-top__column-title">При необходимости отсортируйте статьи</div>							<div class="articles-top__row">								<div class="articles-top__select">									<div id="continentSelect" name="form[]" class="articles-top__column-select">										<option value="1" selected="selected">Выберите континент</option>										<option value="2">Пункт №2</option>										<option value="3">Пункт №3</option>										<option value="4">Пункт №4</option>									</div>								</div>								<div class="articles-top__select">									<div id="countrySelect" name="form[]" class="articles-top__column-select">										<option value="1" selected="selected">Выберите старану</option>										<option value="2">Пункт №2</option>										<option value="3">Пункт №3</option>										<option value="4">Пункт №4</option>									</div>								</div>								<div class="articles-top__select">									<div id="citySelect" name="form[]" class="articles-top__column-select">										<option value="1" selected="selected">Выберите город</option>										<option value="2">Пункт №2</option>										<option value="3">Пункт №3</option>										<option value="4">Пункт №4</option>									</div>								</div>							</div>						</div>						<div class="articles-top__column">							<div class="articles-top__column-title">Или воспользуйтесь поиском</div>							<div class="articles-top__row">								<div class="articles-top__search">									<input autocomplete="off" placeholder="Поиск" type="text" name="form[]" data-value="" class="input" />								</div>							</div>						</div>					</div>				</div>			</div>			<div class="articles-main">				<div class='articles-main__content _container'>					<div class="articles-main__body">						<div class="articles-main__slider _swiper">							<div data-hash="articles-1" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-2" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-3" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-4" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-5" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-6" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>							<div data-hash="articles-7" class="articles-main__block">								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>								<div class="articles-main__slide slide-articles-main">									<div class="slide-articles-main__body">										<div class="slide-articles-main__img"><a href="">												<picture><source srcset="img/articles/block-img.webp" type="image/webp"><img src="img/articles/block-img.jpg" alt=""></picture>											</a></div>										<div class="slide-articles-main__title"><a href="">Название</a></div>										<div class="slide-articles-main__descrition">Краткое описание</div>										<div class="slide-articles-main__date">00.00.0000</div>									</div>								</div>							</div>						</div>						<div class="articles-main__bottom">							<div class="hot-offer__prev"></div>							<div class="articles-main__pagination"></div>							<div class="hot-offer__next"></div>						</div>					</div>				</div>			</div>			<div class="telegram-block-about-us__block">				<div class='telegram-block-about-us__content _container'>					<div class="telegram-block-about-us">						<div class="telegram-block-about-us__body">							<a href="#" target="_blank" class="telegram-block-about-us__img">								<picture><source srcset="img/icons/telegram.svg" type="image/webp"><img src="img/icons/telegram.svg" alt="telegram" /></picture></a>							<div class="telegram-block-about-us__text-block">								<h3 class="telegram-block-about-us__title">Подписывайся <span><br></span> на наш канал в Telegram!								</h3>								<p class="telegram-block-about-us__text">Чтобы получать уведомления о самых выгодных авиабилетах и									новостях</p>							</div>							<a href="#" class="telegram-block-about-us__btn btn">Подписаться</a>						</div>					</div>				</div>			</div>			<div class="search-result__bottom-btn">				<a href="#" class="search-result__top-btn btn">На главную</a>			</div>		</main>	</div>  <footer class="footer">
+  <div class="footer__content _container">
+    <div class="footer__body">
+      <div class="footer__column">
+        <div class="footer__body-column">
+          <a href="" class="footer__logo">
+            <picture>
+              <source srcset="img//footer/logo.svg" type="image/webp">
+              <img src="img//footer/logo.svg" alt=""/></picture>
+          </a>
+          <div class="footer__rights">
+            <p class="footer__text">Все права соблюдены.</p>
+            <p class="footer__copyright">TrevelBrevel Ⓒ 2020.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__body-column footer__body-column_end">
+          <div class="footer__socials socials">
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/vk.svg" type="image/webp">
+                <img src="img/footer/vk.svg" alt="instagram"/></picture>
+            </a>
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/telegram.svg" type="image/webp">
+                <img src="img/footer/telegram.svg" alt="instagram"/></picture>
+            </a>
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/inst.svg" type="image/webp">
+                <img src="img/footer/inst.svg" alt="instagram"/></picture>
+            </a>
+          </div>
+          <a href="#" сlass="footer__privacy-policy">Политика конфидициальности</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>  <!-- Swiper -->
+<script src="js/vendors.min.js"></script>
+<script src="js/app.min.js"></script></body></html>

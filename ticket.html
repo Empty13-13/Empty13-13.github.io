@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="ru"> <head>
+	<title>Страница билета</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head><body><div class="wrapper">  <header class="header">
+  <div class="header__wrapper">
+    <div class="header__up up-header">
+      <div class="up-header__content _container">
+        <a href="/" class="up-header__logo">
+          <picture>
+            <source srcset="img/logo.svg" type="image/webp">
+            <img src="img/logo.svg" alt=""/></picture>
+        </a>
+        <a href="#" class="up-header__btn-search">Поиск</a>
+      </div>
+    </div>
+    <div class="header__menu menu">
+      <div class="menu__content _container">
+        <form onsubmit="changeAction(this);" method="GET" class="menu__body">
+          <div class="menu__column">
+            <label for="from" class="menu__title-column">Откуда</label>
+            <input id="autocomplete" onfocus="this.select()" autocomplete="off" type="text" data-value=""
+                   class="menu__item input _req _text"/>
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Куда</label>
+            <input id="autocomplete" onfocus="this.select()" autocomplete="off" type="text" data-value=""
+                   class="menu__item input _req _text"/>
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Туда</label>
+            <div class="input-calendar">
+              <input autocomplete="off" type="text" data-value="Обратно"
+                     class="menu__item inp-calendar input _req _calendar" readonly/>
+              <div class="calendars">
+                <div class="calendars__top">
+                  <div class="calendars__date-text">Выберите дату отправления</div>
+                  <div class="calendars__back-btn btn">Обратный битет не нужен</div>
+                  <div class="calendars__close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18"
+                         height="18" viewBox="0 0 18 18">
+                      <defs>
+                        <path id="avzva"
+                              d="M691.485 160.07l-1.414 1.415-7.071-7.071-7.071 7.071-1.414-1.414 7.07-7.071-7.07-7.071 1.414-1.415 7.07 7.071 7.072-7.07 1.414 1.414-7.07 7.07z"/>
+                      </defs>
+                      <g>
+                        <g transform="translate(-674 -144)">
+                          <use fill="#0079bd" xlink:href="#avzva"/>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <hr class="calendars__hr">
+                <div class="calendars__down">
+                  <div class="arrows">
+                    <picture>
+                      <source srcset="img/icons/arrow-calendar.svg" type="image/webp">
+                      <img class="prev-mth" src="img/icons/arrow-calendar.svg" alt=""></picture>
+                  </div>
+                  <div class="calendars__date">
+                    <div class="dates">
+                      <div class="month">
+                        <div class="mth"></div>
+                      </div>
+                      <div class="days-of-week">
+                        <div class="day-of-week">ПН</div>
+                        <div class="day-of-week">ВТ</div>
+                        <div class="day-of-week">СР</div>
+                        <div class="day-of-week">ЧТ</div>
+                        <div class="day-of-week">ПТ</div>
+                        <div class="day-of-week">СБ</div>
+                        <div class="day-of-week">ВС</div>
+                      </div>
+
+                      <div class="days"></div>
+                    </div>
+                    <div class="dates2">
+                      <div class="month">
+                        <div class="mth"></div>
+                      </div>
+                      <div class="days-of-week">
+                        <div class="day-of-week">ПН</div>
+                        <div class="day-of-week">ВТ</div>
+                        <div class="day-of-week">СР</div>
+                        <div class="day-of-week">ЧТ</div>
+                        <div class="day-of-week">ПТ</div>
+                        <div class="day-of-week">СБ</div>
+                        <div class="day-of-week">ВС</div>
+                      </div>
+
+                      <div class="days"></div>
+                    </div>
+                  </div>
+                  <div class="arrows">
+                    <picture>
+                      <source srcset="img/icons/arrow-calendar.svg" type="image/webp">
+                      <img class="next-mth" src="img/icons/arrow-calendar.svg" alt=""></picture>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="menu__column">
+            <label for="to" class="menu__title-column">Обратно</label>
+            <div class="input-calendar">
+              <input autocomplete="off" type="text" data-value="Обратно"
+                     class="menu__item inp-calendar input _calendar2" readonly/>
+            </div>
+          </div>
+          <div class="menu__column">
+            <h2 class="menu__title-column">Кол-во пассажиров</h2>
+            <div class="menu__select input inp-peoples" tabindex="0">
+              <div class="menu__select-num">2 пассажира</div>
+              <div class="menu__peoples-filter peoples-filter">
+                <div class="peoples-filter__body">
+                  <div class="peoples-filter__column">
+                    <div class="peoples-filter__text">Взрослые
+                      <small>Старше 12 лет</small>
+                    </div>
+                    <div class="peoples-filter__text">Дети
+                      <small>От 2 до 12 лет</small>
+                    </div>
+                    <div class="peoples-filter__text">Взрослые
+                      <small>до 2 лет,</br>
+                             без места</small>
+                    </div>
+                  </div>
+                  <div class="peoples-filter__column">
+                    <div class="peoples-filter__grown-calc">
+                      <div class="peoples-filter__grown-minus _minus _active" tabindex="1"></div>
+                      <div class="peoples-filter__grown-num _num">2</div>
+                      <div class="peoples-filter__grown-plus _plus _active" tabindex="2"></div>
+                    </div>
+                    <div class="peoples-filter__child-calc">
+                      <div class="peoples-filter__child-minus _minus" tabindex="3"></div>
+                      <div class="peoples-filter__child-num _num">0</div>
+                      <div class="peoples-filter__child-plus _plus _active" tabindex="4"></div>
+                    </div>
+                    <div class="peoples-filter__baby-calc">
+                      <div class="peoples-filter__baby-minus _minus" tabindex="5"></div>
+                      <div class="peoples-filter__baby-num _num">0</div>
+                      <div class="peoples-filter__baby-plus _plus _active" tabindex="6">
+                        <div class="peoples-filter__baby-plus-tip unselectable">Не более одного младенеца (без места)
+                                                                                на
+                                                                                одного взрослого. Если младенцев
+                                                                                больше, добавьте ещё пассажиров в
+                                                                                категории «Дети до 12 лет».
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="menu__column">
+            <div class="menu__btn btn unselectable">Полетели!</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+  <main class="page">    <div class="search-result-slide">      <div class='search-result-slide__content _container'>        <div class="search-result-slide__body"><h3 class="search-result-slide__title"></h3>          <p class="search-result-slide__text"></p></div>      </div>      <div class="search-result-slide__bg _ibg">        <picture>          <source srcset="img/searchResult/back.webp" type="image/webp">          <img src="img/searchResult/back.jpg" alt="Бэкграунд"></picture>      </div>    </div>    <div class="ticket__top">      <div class='ticket__content _container'>        <div class="ticket__top-block"><a href="/" class="ticket__btn-back btn"><span></span></a> <a href="/"                                                                                                     class="ticket__btn btn">На                                                                                                                             главную</a>        </div>      </div>    </div>    <div class="info-ticket">      <div class='info-ticket__content _container'>        <div class="info-ticket__titleBlock">          <h2 class="info-ticket__title">Информация о билете</h2>          <div class="info-ticket__img-title">            <img  id="imgAirline" src="" alt="">          </div>        </div>        <div class="info-ticket__body">          <div class="info-ticket__columns">            <div class="info-ticket__column">              <div id="ticketBody" class="info-ticket__main main-info-ticket"><!--                <div class="main-info-ticket__block">--><!--                  <div class="main-info-ticket__row">--><!--                    <div class="main-info-ticket__ticket ticket-main-info-ticket">--><!--                      <div class="ticket-main-info-ticket__body">--><!--                        <div class="ticket-main-info-ticket__bottom-line">--><!--                          <div class="ticket-main-info-ticket__column">--><!--                            <div class="ticket-main-info-ticket__time"> </div>--><!--                            <p class="ticket-main-info-ticket__date"> </p>--><!--                            <p class="ticket-main-info-ticket__day"> </p></div>--><!--                          <div class="ticket-main-info-ticket__column info-ticket-times">--><!--                            <div class="info-ticket-times__body">--><!--                              <div class="info-ticket-times__top-line">--><!--                                <div class="info-ticket-times__block">--><!--                                  <picture>--><!--                                    <source srcset="img/ticket/arrow-up-right.svg" type="image/webp">--><!--                                    <img src="img/ticket/arrow-up-right.svg" alt="" class="info-ticket-times__img">--><!--                                  </picture>--><!--                                  <p>  <span>  </span></p>--><!--                                </div>--><!--                                <div class="info-ticket-times__block">--><!--                                  <p>  <span>  </span></p>--><!--                                  <picture>--><!--                                    <source srcset="img/ticket/arrow-down-right.svg" type="image/webp">--><!--                                    <img src="img/ticket/arrow-down-right.svg" alt="" class="info-ticket-times__img">--><!--                                  </picture>--><!--                                </div>--><!--                              </div>--><!--                              <div class="info-ticket-times__time-line time-line">--><!--                                <div class="search-info-ticket-times__time-line time-line">--><!--                                  <div class="time-line__line"><span class="time-line__blue"></span> <span--><!--                                    class="time-line__blue"></span> <span class="time-line__blue"></span> <span--><!--                                    class="time-line__yellow"></span> <span class="time-line__big-blue"></span></div>--><!--                                </div>--><!--                              </div>--><!--                              <div class="info-ticket-times__bottom-line">--><!--                                <div class="info-ticket-times__text"> </div>--><!--                                <div class="info-ticket-times__text"> </div>--><!--                                <div class="info-ticket-times__text"> </div>--><!--                              </div>--><!--                            </div>--><!--                          </div>--><!--                        </div>--><!--                      </div>--><!--                    </div>--><!--                    <div class="main-info-ticket__return return-main-info-ticket">--><!--                      <div class="return-main-info-ticket__body">--><!--                        <div class="return-main-info-ticket__column">--><!--                          <div class="return-main-info-ticket__texts">--><!--                            <p class="return-main-info-ticket__return-text">--><!--                            Обратный билет через:</p>--><!--                            <p class="return-main-info-ticket__days-text">12-45 дней</p></div>--><!--                          <div class="return-main-info-ticket__days-line">--><!--                            <div class="return-main-info-ticket__range"></div>--><!--                            <div class="return-main-info-ticket__days">--><!--                              <div class="return-main-info-ticket__start-day">1 день</div>--><!--                              <div class="return-main-info-ticket__end-day">60 дней</div>--><!--                            </div>--><!--                          </div>--><!--                        </div>--><!--                        <div class="return-main-info-ticket__column"><a href="" class="return-main-info-ticket__return-btn">Найти--><!--                                                                                                                            обратный--><!--                                                                                                                            билет</a>--><!--                        </div>--><!--                      </div>--><!--                    </div>--><!--                  </div>--><!--                  <div class="buy-info-ticket">--><!--                    <div class="buy-info-ticket__body">--><!--                      <div class="buy-info-ticket__top">--><!--                        <div class="buy-info-ticket__price">14 200 ₽</div>--><!--                        <div class="buy-info-ticket__sell">-45%</div>--><!--                      </div>--><!--                      <div class="buy-info-ticket__center">--><!--                        <p class="buy-info-ticket__text">Средняя цена:  <span>26 300 ₽</span></p>--><!--                        <p class="buy-info-ticket__text">Вы экономите:  <span>12 100 ₽</span></p>--><!--                      </div>--><!--                      <a href="" class="buy-info-ticket__btn">Подробнее</a>--><!--                    </div>--><!--                  </div>--><!--                </div>-->                <div class="main-info-ticket__block">                  <div class="main-info-ticket__row">                    <div class="main-info-ticket__ticket ticket-main-info-ticket">                      <div class="ticket-main-info-ticket__body">                        <div class="ticket-main-info-ticket__bottom-line">                          <div class="ticket-main-info-ticket__column">                            <div class="ticket-main-info-ticket__time"> </div>                            <p class="ticket-main-info-ticket__date"> </p>                            <p class="ticket-main-info-ticket__day"> </p></div>                          <div class="ticket-main-info-ticket__column info-ticket-times">                            <div class="info-ticket-times__body">                              <div class="info-ticket-times__top-line">                                <div class="info-ticket-times__block">                                  <picture>                                    <source srcset="img/ticket/arrow-up-right.svg" type="image/webp">                                    <img src="img/ticket/arrow-up-right.svg" alt="" class="info-ticket-times__img">                                  </picture>                                  <p>  <span>  </span></p>                                </div>                                <div class="info-ticket-times__block">                                  <p>  <span>  </span></p>                                  <picture>                                    <source srcset="img/ticket/arrow-down-right.svg" type="image/webp">                                    <img src="img/ticket/arrow-down-right.svg" alt="" class="info-ticket-times__img">                                  </picture>                                </div>                              </div>                              <div class="info-ticket-times__time-line time-line">                                <div class="search-info-ticket-times__time-line time-line">                                  <div class="time-line__line"><span class="time-line__blue"></span> <span                                    class="time-line__blue"></span> <span class="time-line__blue"></span> <span                                    class="time-line__yellow"></span> <span class="time-line__big-blue"></span></div>                                </div>                              </div>                              <div class="info-ticket-times__bottom-line">                                <div class="info-ticket-times__text"> </div>                                <div class="info-ticket-times__text"> </div>                                <div class="info-ticket-times__text"> </div>                              </div>                            </div>                          </div>                        </div>                      </div>                      <hr class="hr">                      <div class="ticket-main-info-ticket__body">                        <div class="ticket-main-info-ticket__bottom-line">                          <div class="ticket-main-info-ticket__column">                            <div class="ticket-main-info-ticket__time"> </div>                            <p class="ticket-main-info-ticket__date"> </p>                            <p class="ticket-main-info-ticket__day"> </p></div>                          <div class="ticket-main-info-ticket__column info-ticket-times">                            <div class="info-ticket-times__body">                              <div class="info-ticket-times__top-line">                                <div class="info-ticket-times__block">                                  <picture>                                    <source srcset="img/ticket/arrow-up-right.svg" type="image/webp">                                    <img src="img/ticket/arrow-up-right.svg" alt="" class="info-ticket-times__img">                                  </picture>                                  <p>  <span>  </span></p>                                </div>                                <div class="info-ticket-times__block">                                  <p>  <span>  </span></p>                                  <picture>                                    <source srcset="img/ticket/arrow-down-right.svg" type="image/webp">                                    <img src="img/ticket/arrow-down-right.svg" alt="" class="info-ticket-times__img">                                  </picture>                                </div>                              </div>                              <div class="info-ticket-times__time-line time-line">                                <div class="search-info-ticket-times__time-line time-line">                                  <div class="time-line__line"><span class="time-line__blue"></span> <span                                    class="time-line__blue"></span> <span class="time-line__blue"></span> <span                                    class="time-line__yellow"></span> <span class="time-line__big-blue"></span></div>                                </div>                              </div>                              <div class="info-ticket-times__bottom-line">                                <div class="info-ticket-times__text"> </div>                                <div class="info-ticket-times__text"> </div>                                <div class="info-ticket-times__text"> </div>                              </div>                            </div>                          </div>                        </div>                      </div>                    </div>                    </div>                  <div class="buy-info-ticket">                    <div class="buy-info-ticket__body">                      <div class="buy-info-ticket__top">                        <div class="buy-info-ticket__price">  ₽</div>                        <div class="buy-info-ticket__sell">- %</div>                      </div>                      <div class="buy-info-ticket__center">                        <p class="buy-info-ticket__text">Средняя цена:  <span> ₽</span></p>                        <p class="buy-info-ticket__text">Вы экономите:  <span> ₽</span></p>                      </div>                      <a href="" class="buy-info-ticket__btn">Подробнее</a>                    </div>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>    <div class="ticket-safe">      <div class='ticket-safe__content _container'>        <div class="ticket-safe__body">          <div class="ticket-safe__column"><h3 class="ticket-safe__title">Обезопасьте свой отдых</h3>            <div class="ticket-safe__cost">Стоимость страховки по вашему направлению:<br> <span></span></div>            <a target="_blank" class="ticket-safe__btn btn">Оформить</a></div>        </div>      </div>    </div>    <div class="ticket-deals">      <div class='ticket-deals__content _container'><h2 class="ticket-deals__title">Выгодные предложения для проживания                                                                                    во Вьетнаме</h2>        <p class="ticket-deals__description-title">бла бла бла бла на любой вкус</p>        <div class="ticket-deals__body">          <div class="ticket-deals__column">            <div class="ticket-deals__block block-ticket-deals">              <div class="block-ticket-deals__body"><h4 class="block-ticket-deals__title">Хостелы</h4>                <a href="" class="block-ticket-deals__btn btn">от 0 000 ₽</a></div>            </div>            <div class="ticket-deals__block block-ticket-deals">              <div class="block-ticket-deals__body"><h4 class="block-ticket-deals__title">                Отель<span></span><span></span><span></span></h4>                    <a href=""                                                                                        class="block-ticket-deals__btn btn">от                                                                                                                            0                                                                                                                            000                                                                                                                            ₽</a>              </div>            </div>            <div class="ticket-deals__block block-ticket-deals">              <div class="block-ticket-deals__body"><h4 class="block-ticket-deals__title">                Отель<span></span><span></span><span></span><span></span><span></span></h4>                    <a                href="" class="block-ticket-deals__btn btn">от 0 000 ₽</a></div>            </div>            <div class="ticket-deals__block block-ticket-deals">              <div class="block-ticket-deals__body"><h4 class="block-ticket-deals__title">                Отель<span></span><span></span><span></span><span></span><span></span></h4>                    <a                href="" class="block-ticket-deals__btn btn">от 0 000 ₽</a></div>            </div>          </div>          <div class="ticket-deals__column">            <div class="ticket-deals__slide slide-ticket-deals">              <div class="slide-ticket-deals__body">                <picture>                  <source srcset="img/underfooter/img.webp" type="image/webp">                  <img class="slide-ticket-deals__img" src="img/underfooter/img.jpg" alt=""></picture>              </div>            </div>          </div>        </div>      </div>    </div>    <div class="ticket-weather">      <div class='ticket-weather__content _container'><h3 class="ticket-weather__title">Погода во Вьетнаме</h3>        <p class="ticket-weather__description-title">Средня температура за последние 3 года</p>        <div class="ticket-weather__body">          <div class="ticket-weather__block block-ticket-weather">            <div class="block-ticket-weather__body">              <div class="block-ticket-weather__column">                <div class="block-ticket-weather__title-block">Ноябрь</div>                <div class="block-ticket-weather__days">                  <div class="block-ticket-weather__day">Днём: <span>+32°C</span></div>                  <div class="block-ticket-weather__night">Ночью: <span>+25°C</span></div>                  <div class="block-ticket-weather__water">Вода: <span>+28°C</span></div>                </div>              </div>              <div class="block-ticket-weather__column">                <picture>                  <source srcset="img/ticket/sun.svg" type="image/webp">                  <img src="img/ticket/sun.svg" alt=""></picture>              </div>            </div>          </div>          <div class="ticket-weather__block block-ticket-weather">            <div class="block-ticket-weather__body">              <div class="block-ticket-weather__column">                <div class="block-ticket-weather__title-block">Ноябрь</div>                <div class="block-ticket-weather__days">                  <div class="block-ticket-weather__day">Днём: <span>+32°C</span></div>                  <div class="block-ticket-weather__night">Ночью: <span>+25°C</span></div>                  <div class="block-ticket-weather__water">Вода: <span>+28°C</span></div>                </div>              </div>              <div class="block-ticket-weather__column">                <picture>                  <source srcset="img/ticket/cloudy.svg" type="image/webp">                  <img src="img/ticket/cloudy.svg" alt=""></picture>              </div>            </div>          </div>          <div class="ticket-weather__block block-ticket-weather">            <div class="block-ticket-weather__body">              <div class="block-ticket-weather__column">                <div class="block-ticket-weather__title-block">Ноябрь</div>                <div class="block-ticket-weather__days">                  <div class="block-ticket-weather__day">Днём: <span>+32°C</span></div>                  <div class="block-ticket-weather__night">Ночью: <span>+25°C</span></div>                  <div class="block-ticket-weather__water">Вода: <span>+28°C</span></div>                </div>              </div>              <div class="block-ticket-weather__column">                <picture>                  <source srcset="img/ticket/rain.svg" type="image/webp">                  <img src="img/ticket/rain.svg" alt=""></picture>              </div>            </div>          </div>        </div>      </div>    </div>  </main>  <div class="under-footer">
+  <div class="under-footer__content _container">
+    <div class="under-footer__body">
+      <div class="under-footer__top top-under-footer">
+        <div class="top-under-footer__text">
+          <h2 class="top-under-footer__title">Интересные статьи</h2>
+          <h3 class="top-under-footer__info">Пользная информация для путешественников</h3>
+        </div>
+        <div class="top-under-footer__btn btn">Все статьи</div>
+      </div>
+      <div class="under-footer__articles articles-under-footer">
+        <div class="articles-under-footer__body">
+          <div class="articles-under-footer__article article-articles-under-footer">
+            <div class="article-articles-under-footer__body">
+              <a href="">
+                <picture>
+                  <source srcset="img/underfooter/img.webp" type="image/webp">
+                  <img src="img/underfooter/img.jpg" alt="" class="article-articles-under-footer__img"></picture>
+              </a>
+              <a href="" class="article-articles-under-footer__title">Название</a>
+              <p class="article-articles-under-footer__description">Красткое описание</p>
+              <p class="article-articles-under-footer__date">00.00.0000</p>
+            </div>
+          </div>
+          <div class="articles-under-footer__article article-articles-under-footer">
+            <div class="article-articles-under-footer__body">
+              <a href="">
+                <picture>
+                  <source srcset="img/underfooter/img.webp" type="image/webp">
+                  <img src="img/underfooter/img.jpg" alt="" class="article-articles-under-footer__img"></picture>
+              </a>
+              <a href="" class="article-articles-under-footer__title">Название</a>
+              <p class="article-articles-under-footer__description">Красткое описание</p>
+              <p class="article-articles-under-footer__date">00.00.0000</p>
+            </div>
+          </div>
+          <div class="articles-under-footer__article article-articles-under-footer">
+            <div class="article-articles-under-footer__body">
+              <a href="">
+                <picture>
+                  <source srcset="img/underfooter/img.webp" type="image/webp">
+                  <img src="img/underfooter/img.jpg" alt="" class="article-articles-under-footer__img"></picture>
+              </a>
+              <a href="" class="article-articles-under-footer__title">Название</a>
+              <p class="article-articles-under-footer__description">Красткое описание</p>
+              <p class="article-articles-under-footer__date">00.00.0000</p>
+            </div>
+          </div>
+          <div class="articles-under-footer__article article-articles-under-footer">
+            <div class="article-articles-under-footer__body">
+              <a href="">
+                <picture>
+                  <source srcset="img/underfooter/img.webp" type="image/webp">
+                  <img src="img/underfooter/img.jpg" alt="" class="article-articles-under-footer__img"></picture>
+              </a>
+              <a href="" class="article-articles-under-footer__title">Название</a>
+              <p class="article-articles-under-footer__description">Красткое описание</p>
+              <p class="article-articles-under-footer__date">00.00.0000</p>
+            </div>
+          </div>
+        </div>
+        <div class=articles-under-footer__btn btn
+        ">Все статьи
+      </div>
+    </div>
+  </div>
+</div>
+</div><footer class="footer">
+  <div class="footer__content _container">
+    <div class="footer__body">
+      <div class="footer__column">
+        <div class="footer__body-column">
+          <a href="" class="footer__logo">
+            <picture>
+              <source srcset="img//footer/logo.svg" type="image/webp">
+              <img src="img//footer/logo.svg" alt=""/></picture>
+          </a>
+          <div class="footer__rights">
+            <p class="footer__text">Все права соблюдены.</p>
+            <p class="footer__copyright">TrevelBrevel Ⓒ 2020.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__body-column footer__body-column_end">
+          <div class="footer__socials socials">
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/vk.svg" type="image/webp">
+                <img src="img/footer/vk.svg" alt="instagram"/></picture>
+            </a>
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/telegram.svg" type="image/webp">
+                <img src="img/footer/telegram.svg" alt="instagram"/></picture>
+            </a>
+            <a href="" class="socials__logo">
+              <picture>
+                <source srcset="img/footer/inst.svg" type="image/webp">
+                <img src="img/footer/inst.svg" alt="instagram"/></picture>
+            </a>
+          </div>
+          <a href="#" сlass="footer__privacy-policy">Политика конфидициальности</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer><!-- Swiper -->
+<script src="js/vendors.min.js"></script>
+<script src="js/app.min.js"></script><script src="js/ticket.min.js"></script></body></html>

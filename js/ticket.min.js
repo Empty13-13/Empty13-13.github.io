@@ -1,26 +1,30 @@
+'use strict';
+
 document.addEventListener('DOMContentLoaded', (event) => {
 
   let ticketBody = document.querySelector('#ticketBody')
 
   if (ticketBody) {
     startTicket()
+    coverageForTicket()
 
+    //Функция вставки данных в билет
     async function startTicket() {
       //Переменные
-      let uuid = getURLVarArr().uuid
+      let uuid = await getURLVarArr().uuid
+      if(!uuid){
+        return
+      }
       let url = `http://194.58.92.109/v1/advantageousTickets/${uuid}`
       let data = await fetchData(url)
+      if (data.status !== 200 && data.error) {
+        return
+      }
       let iconsUrl = `http://194.58.92.109/v1/info/airlineLogo?width=200&height=200&airlineCode=${data.airline}`
       let departureDate = new Date(data.departureDate)
       let arrivalDate = new Date(data.arrivalDate)
       let imgAirline = document.querySelector('#imgAirline')
       let titlePage = document.querySelector('.search-result-slide__title')
-
-      let coverageBtn = document.querySelector('.ticket-safe__btn.btn')
-      let coveragePrice = document.querySelector('.ticket-safe__cost > span')
-      let coverageData = await fetchData(`http://194.58.92.109/v1/insurance/priceInsurance?ticketId=${uuid}`)
-      coveragePrice.innerHTML = `от ${coverageData.price.toLocaleString().replaceAll(',',' ')} ₽`
-      coverageBtn.href = coverageData.link
 
       //Добавляем изображение
       if (imgAirline) {
@@ -30,30 +34,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       //Добавляем название сверху
       if (titlePage) {
         titlePage.innerHTML = data.arrivalCityName
-      }
-
-      //Функция запроса к данным
-      async function fetchData(url) {
-        try {
-          const response = await fetch(url)
-          return await response.json()
-        } catch (error) {
-          console.error(error)
-        }
-      }
-
-      //Функция собирание переменных из адресной строки
-      function getURLVarArr() {
-        var data = [];
-        var query = String(document.location.href).split('?');
-        if (query[1]) {
-          var part = query[1].split('&');
-          for (i = 0; i < part.length; i++) {
-            var dat = part[i].split('=');
-            data[dat[0]] = dat[1];
-          }
-        }
-        return data;
       }
 
       //Создание блока билета
@@ -323,6 +303,53 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
       }
     }
+
+    //Функция страховки билета
+    async function coverageForTicket(){
+      let uuid = await getURLVarArr().uuid
+      if(!uuid){
+        return
+      }
+
+      let coverageBtn = document.querySelector('.ticket-safe__btn.btn')
+      let coveragePrice = document.querySelector('.ticket-safe__cost > span')
+      let coverageData = await fetchData(`http://194.58.92.109/v1/insurance/priceInsurance?ticketId=${uuid}`)
+      if(coveragePrice && coverageData) {
+        coveragePrice.innerHTML = `от ${coverageData.price.toLocaleString().replaceAll(',', ' ')} ₽`
+      }
+      if(coverageBtn) {
+        coverageBtn.href = coverageData.link
+      }
+    }
+
+
+    // region Дополнительные функции
+
+    //Функция собирание переменных из адресной строки
+    function getURLVarArr() {
+      var data = [];
+      var query = String(document.location.href).split('?');
+      if (query[1]) {
+        var part = query[1].split('&');
+        for (let i = 0; i < part.length; i++) {
+          var dat = part[i].split('=');
+          data[dat[0]] = dat[1];
+        }
+      }
+      return data;
+    }
+
+    //Функция запроса к данным
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url)
+        return await response.json()
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    // endregion
   }
 
 })

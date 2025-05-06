@@ -1,0 +1,464 @@
+'use strict'
+import Game from "./Game.js";
+import Player from "./Player.js";
+import Enemy from "./Enemy.js";
+import {setHidden, wrapSetEventClick} from "./functions.js";
+
+
+const TheGame = new Game({tileSize:70})
+let map // Карта (1 - стена, 0 - пусто, 2 - точка)
+let pacman
+let ghosts = []
+
+//region Создание canvas
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const scoreElement = document.getElementById('score');
+
+// Адаптация размера канваса
+function resizeCanvas() {
+  const size = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+  canvas.width = TheGame.mapWidth * TheGame.tileSize;
+  canvas.height = TheGame.mapHeight * TheGame.tileSize;
+  canvas.style.width = `${size}px`;
+  canvas.style.height = `${size}px`;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+//endregion
+
+//Размер тела для персонажей
+const bodySize = 0.85
+const bodySizeTile = TheGame.tileSize * bodySize
+
+let score = 0;
+let gameLoopId = null;
+
+//region Все функции
+
+//Установка значений для старта игры
+function setStartValues() {
+  ghosts.length = 0
+  pacman = null
+
+  map = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1],
+    [1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 2, 1, 2, 1, 1, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  ];
+  pacman = new Player()
+  ghosts = [
+    new Enemy('Blinky', '#f00', {x:12, y:1}, {x:10, y:8}),
+    new Enemy('Pinky', '#ffb8ff', {x:12, y:1}, {x:10, y:8}),
+    new Enemy('Inky', '#0ff', {x:12, y:1}, {x:10, y:8}),
+    new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:10, y:8}),
+  ];
+}
+
+// Отрисовка карты
+function drawMap() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let y = 0; y < TheGame.mapHeight; y++) {
+    for (let x = 0; x < TheGame.mapWidth; x++) {
+      if (map[y][x] === 1) {
+        ctx.fillStyle = '#00f';
+        ctx.fillRect(x * TheGame.tileSize, y * TheGame.tileSize, TheGame.tileSize, TheGame.tileSize);
+      }
+      else if (map[y][x] === 2) {
+        ctx.beginPath();
+        ctx.arc(x * TheGame.tileSize + TheGame.tileSize / 2, y * TheGame.tileSize + TheGame.tileSize / 2, TheGame.tileSize / 8, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+  }
+}
+
+// Отрисовка Pac-Man
+function drawPacman() {
+  const centerX = pacman.x * TheGame.tileSize;
+  const centerY = pacman.y * TheGame.tileSize;
+
+  ctx.beginPath();
+  ctx.rect(centerX, centerY, bodySizeTile, bodySizeTile);
+  ctx.fillStyle = '#ff0';
+  ctx.fill();
+  ctx.closePath();
+}
+
+// Отрисовка призраков
+function drawGhosts() {
+  ghosts.forEach(ghost => {
+    const centerX = ghost.x * TheGame.tileSize;
+    const centerY = ghost.y * TheGame.tileSize;
+
+    // Тело призрака
+    ctx.beginPath();
+    ctx.rect(centerX, centerY, bodySizeTile, bodySizeTile);
+    ctx.closePath();
+    ctx.fillStyle = ghost.color;
+    ctx.fill();
+  });
+}
+
+// Проверка столкновений со стенами или выхода из карты
+function canMove(direction, x, y) {
+  if (direction === 'down') {
+    y += bodySize
+  }
+  if (direction === 'right') {
+    x += bodySize
+  }
+  const tileX = Math.floor(x);
+  const tileY = Math.floor(y);
+
+  return tileY >= 0
+    && tileY < TheGame.mapHeight
+    && tileX >= 0
+    && tileX < TheGame.mapWidth
+    && map[tileY][tileX] !== 1;
+}
+
+//Обработчик nextDirection
+function nextDirectionHandler(nextDirection, x, y) {
+  let localX = Math.floor(x)
+  let localY = Math.floor(y)
+  let dx = 0
+  let dy = 0
+  const space = 0.11
+
+  switch (nextDirection) {
+    case 'right':
+      if (y - Math.floor(y) > space) {
+        return null
+      }
+      dx = 1;
+      break;
+    case 'left':
+      if (y - Math.floor(y) > space) {
+        return null
+      }
+      dx = -1;
+      break;
+    case 'up':
+      if (x - Math.floor(x) > space) {
+        return null
+      }
+      dy = -1;
+      break;
+    case 'down':
+      if (x - Math.floor(x) > space) {
+        return null
+      }
+      dy = 1;
+      break;
+  }
+
+  if (map[localY + dy][localX + dx] === 1) {
+    return null
+  }
+  else {
+    return nextDirection
+  }
+}
+
+// Обновление позиции Pac-Man
+function updatePacman() {
+  let nextX = pacman.x;
+  let nextY = pacman.y;
+
+  //Обновляем direction
+  pacman.direction = nextDirectionHandler(pacman.nextDirection, pacman.x, pacman.y) || pacman.direction
+
+  switch (pacman.direction) {
+    case 'right':
+      nextX += pacman.speed;
+      nextY = Math.floor(nextY) + 0.1
+      break;
+    case 'left':
+      nextX -= pacman.speed;
+      nextY = Math.floor(nextY) + 0.1
+      break;
+    case 'up':
+      nextY -= pacman.speed;
+      nextX = Math.floor(nextX) + 0.1
+      break;
+    case 'down':
+      nextX = Math.floor(nextX) + 0.1
+      nextY += pacman.speed;
+      break;
+  }
+
+  if (canMove(pacman.direction, nextX, nextY)) {
+    pacman.x = nextX;
+    pacman.y = nextY;
+
+    const tileX = Math.floor(pacman.x);
+    const tileY = Math.floor(pacman.y);
+    if (map[tileY][tileX] === 2) {
+      map[tileY][tileX] = 0;
+      score += 10;
+      scoreElement.textContent = `Score: ${score}`;
+    }
+  }
+}
+
+// Поиск пути (упрощенный A*)
+function findPath(startX, startY, targetX, targetY) {
+  const queue = [{x:Math.floor(startX), y:Math.floor(startY), path:[]}];
+  const visited = new Set();
+  const directions = [
+    {dx:0, dy:-1, name:'up'},
+    {dx:0, dy:1, name:'down'},
+    {dx:-1, dy:0, name:'left'},
+    {dx:1, dy:0, name:'right'},
+  ];
+
+  while (queue.length > 0) {
+    const {x, y, path} = queue.shift();
+    const key = `${x},${y}`;
+    if (visited.has(key)) {
+      continue;
+    }
+    visited.add(key);
+
+    if (x === Math.floor(targetX) && y === Math.floor(targetY)) {
+      return path[0] || null;
+    }
+
+    for (const dir of directions) {
+      const newX = x + dir.dx;
+      const newY = y + dir.dy;
+      if (canMove(dir.name, newX, newY)) {
+        queue.push({x:newX, y:newY, path:[...path, dir.name]});
+      }
+    }
+
+    // Сортировка по расстоянию до цели
+    queue.sort((a, b) => {
+      const distA = Math.abs(a.x - targetX) + Math.abs(a.y - targetY);
+      const distB = Math.abs(b.x - targetX) + Math.abs(b.y - targetY);
+      return distA - distB;
+    });
+  }
+
+  return null;
+}
+
+// Обновление призраков
+function updateGhosts() {
+  ghosts.forEach(ghost => {
+    let targetX, targetY;
+
+    // Определение цели в зависимости от имени призрака
+    switch (ghost.name) {
+      case 'Blinky':
+        targetX = pacman.x;
+        targetY = pacman.y;
+        break;
+      case 'Pinky':
+        targetX = pacman.x;
+        targetY = pacman.y;
+        switch (pacman.direction) {
+          case 'right':
+            targetX += 4;
+            break;
+          case 'left':
+            targetX -= 4;
+            break;
+          case 'up':
+            targetY -= 4;
+            break;
+          case 'down':
+            targetY += 4;
+            break;
+        }
+        break;
+      case 'Inky':
+        const blinky = ghosts.find(g => g.name === 'Blinky');
+        let offsetX = pacman.x;
+        let offsetY = pacman.y;
+        switch (pacman.direction) {
+          case 'right':
+            offsetX += 2;
+            break;
+          case 'left':
+            offsetX -= 2;
+            break;
+          case 'up':
+            offsetY -= 2;
+            break;
+          case 'down':
+            offsetY += 2;
+            break;
+        }
+        targetX = offsetX + (offsetX - blinky.x);
+        targetY = offsetY + (offsetY - blinky.y);
+        break;
+      case 'Clyde':
+        const distance = Math.sqrt((ghost.x - pacman.x) ** 2 + (ghost.y - pacman.y) ** 2);
+        if (distance > 5) {
+          targetX = pacman.x;
+          targetY = pacman.y;
+        }
+        else {
+          targetX = ghost.scatterTarget.x;
+          targetY = ghost.scatterTarget.y;
+        }
+        break;
+    }
+
+    // Поиск пути к цели
+    const nextDirection = findPath(ghost.x, ghost.y, targetX, targetY);
+    if (nextDirection) {
+      ghost.direction = nextDirectionHandler(nextDirection, ghost.x, ghost.y) || ghost.direction;
+    }
+
+    // Движение призрака
+    const speed = 0.05; // Призраки медленнее Pac-Man
+    let nextX = ghost.x;
+    let nextY = ghost.y;
+
+    switch (ghost.direction) {
+      case 'right':
+        nextX += speed;
+        nextY = Math.floor(nextY) + 0.1
+        break;
+      case 'left':
+        nextX -= speed;
+        nextY = Math.floor(nextY) + 0.1
+        break;
+      case 'up':
+        nextY -= speed;
+        nextX = Math.floor(nextX) + 0.1
+        break;
+      case 'down':
+        nextX = Math.floor(nextX) + 0.1
+        nextY += speed;
+        break;
+    }
+
+    if (canMove(ghost.direction, nextX, nextY)) {
+      ghost.x = nextX;
+      ghost.y = nextY;
+    }
+  });
+}
+
+// Проверка столкновений с призраками
+function checkCollisions() {
+  ghosts.forEach(ghost => {
+    const dx = pacman.x - ghost.x;
+    const dy = pacman.y - ghost.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    if (distance < 1) {
+      TheGame.setState('over');
+      scoreElement.textContent = `Game Over! Score: ${score}`;
+      if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.sendData(JSON.stringify({score}));
+      }
+    }
+  });
+}
+
+//endregion
+
+// Игровой цикл
+let lastTime = 0;
+
+function gameLoop(timestamp) {
+  if (TheGame.isGameOver()) {
+    cancelAnimationFrame(gameLoopId);
+    return;
+  }
+
+  const deltaTime = timestamp - lastTime;
+  lastTime = timestamp;
+
+  if (TheGame.state !== 2) {
+    updatePacman();
+    updateGhosts();
+    checkCollisions();
+  }
+
+  drawMap();
+  drawPacman();
+  drawGhosts();
+
+  gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function startGame() {
+  if (gameLoopId) {
+    cancelAnimationFrame(gameLoopId);
+  }
+  setStartValues()
+  TheGame.setState('start')
+  requestAnimationFrame(gameLoop);
+}
+
+// Управление
+window.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'ArrowRight':
+      pacman.nextDirection = 'right';
+      break;
+    case 'ArrowLeft':
+      pacman.nextDirection = 'left';
+      break;
+    case 'ArrowUp':
+      pacman.nextDirection = 'up';
+      break;
+    case 'ArrowDown':
+      pacman.nextDirection = 'down';
+      break;
+    case 'Escape':
+      TheGame.changePauseGame()
+      break;
+  }
+});
+// Очистка при выходе
+window.addEventListener('beforeunload', () => {
+  if (gameLoopId) {
+    cancelAnimationFrame(gameLoopId);
+  }
+});
+
+wrapSetEventClick('#restartBtn', startGame)
+wrapSetEventClick('#startGame', startGame)
+wrapSetEventClick('#upStick',() => pacman.nextDirection = 'up')
+wrapSetEventClick('#leftStick',() => pacman.nextDirection = 'left')
+wrapSetEventClick('#rightStick',() => pacman.nextDirection = 'right')
+wrapSetEventClick('#downStick',() => pacman.nextDirection = 'down')
+
+//Запуск игры при полной загрузке документа
+window.addEventListener("load", function() {
+  setHidden('#gameOver', true)
+
+  setStartValues()
+
+  drawMap()
+  drawPacman()
+  drawGhosts()
+});
+

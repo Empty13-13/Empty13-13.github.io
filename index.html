@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/bunker-online.ico" type="image/x-icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
-<div class="_wrapper">
-404
+<div id="game-container">
+    <div id="coordinate">X: 0, Y:0</div>
+    <div id="score">Score: 0</div>
+    <canvas id="canvas"></canvas>
+    <div id="gamepad">
+        <div class="content">
+            <button id="upStick">Вверх</button>
+            <button id="leftStick">Влево</button>
+            <button id="rightStick">Вправо</button>
+            <button id="downStick">Вниз</button>
+        </div>
+    </div>
+    <div id="gameOver">
+        <div class="content">
+            <div class="text">
+                Игра закончена!
+            </div>
+            <button id="restartBtn">Начать заново</button>
+        </div>
+    </div>
+    <div id="welcome">
+        <div class="content">
+            <div class="text">
+                Чтобы выиграть и получить приз, необходимо собрать все кальяны. И тут ещё другие правила можно расписать
+            </div>
+            <button id="startGame">Начать игру</button>
+        </div>
+    </div>
+    <div id="winGame">
+        <div class="content">
+            <div class="text">
+                Поздравляем, вы выиграли!
+                Ваш код:
+            </div>
+            <div class="code">
+                KALYAN56
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="module" src="script/index.js">
+
+</script>
 </body>
 </html>

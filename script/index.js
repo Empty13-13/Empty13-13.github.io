@@ -600,7 +600,7 @@ function checkCollisions() {
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance < 1) {
       TheGame.setState('over');
-      scoreElement.textContent = `Game Over! Собрано кальянов: ${score}`;
+      scoreElement.textContent = `Собрано кальянов: ${score}`;
       if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.sendData(JSON.stringify({score}));
       }

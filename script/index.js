@@ -672,6 +672,8 @@ const touchStartHandler = (event) => {
   const touch = event.touches[0];
   startX = touch.clientX;
   startY = touch.clientY;
+
+  event.preventDefault();
 };
 
 const touchEndHandler = (event) => {

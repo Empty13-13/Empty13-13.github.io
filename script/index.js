@@ -61,6 +61,8 @@ function setStartValues() {
     new Enemy('Inky', '#0ff', {x:12, y:1}, {x:10, y:8}),
     new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:10, y:8}),
   ];
+  score = 0
+  scoreElement.textContent = `Кальянов: ${score}/${numItems}`
 }
 
 //Установка num предметов на карте в рандомных местах, где нет стен

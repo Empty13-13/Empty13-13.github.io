@@ -17,15 +17,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 100vw;
-    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 #canvas {
     background-color: #000;
     border: 2px solid #fff;
-    max-width: 80vw;
-    max-height: 80vh;
+    max-width: 99vw;
+    max-height: 90vh;
     aspect-ratio: 1 / 1;
 }
 

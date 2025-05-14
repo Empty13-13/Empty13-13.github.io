@@ -437,12 +437,12 @@ function updatePacman() {
     if (map[tileY][tileX] >= 10 && !pacman.takeObject) {
       pacman.takeObject = true
       map[tileY][tileX] = 0;
-      scoreElement.textContent = `Score: ${score}`;
+      scoreElement.textContent = `Кальянов: ${score}/${numItems}`;
     }
     if (map[tileY][tileX] === 3 && pacman.takeObject) {
       pacman.takeObject = false
       score += 1;
-      scoreElement.textContent = `Score: ${score}`;
+      scoreElement.textContent = `Кальянов: ${score}/${numItems}`;
       if (score >= numItems) {
         TheGame.setState('win')
       }
@@ -600,7 +600,7 @@ function checkCollisions() {
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance < 1) {
       TheGame.setState('over');
-      scoreElement.textContent = `Game Over! Score: ${score}`;
+      scoreElement.textContent = `Game Over! Собрано кальянов: ${score}`;
       if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.sendData(JSON.stringify({score}));
       }
@@ -625,7 +625,7 @@ function gameLoop(timestamp) {
   if (TheGame.state !== 2) {
     updatePacman();
     updateGhosts();
-    // checkCollisions();
+    checkCollisions();
   }
 
   drawMap(timestamp);
@@ -664,6 +664,47 @@ window.addEventListener('keydown', (e) => {
       break;
   }
 });
+let startX, startY, endX, endY;
+
+const touchStartHandler = (event) => {
+  const touch = event.touches[0];
+  startX = touch.clientX;
+  startY = touch.clientY;
+};
+
+const touchEndHandler = (event) => {
+  const touch = event.changedTouches[0];
+  endX = touch.clientX;
+  endY = touch.clientY;
+
+  handleSwipe();
+};
+
+const handleSwipe = () => {
+  const deltaX = endX - startX;
+  const deltaY = endY - startY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // Горизонтальный свайп
+    if (deltaX > 0) {
+      pacman.nextDirection = 'right';
+    } else {
+      pacman.nextDirection = 'left';
+    }
+  } else {
+    // Вертикальный свайп
+    if (deltaY > 0) {
+      pacman.nextDirection = 'down';
+    } else {
+      pacman.nextDirection = 'up';
+    }
+  }
+};
+
+const element = document.querySelector('body');
+element.addEventListener('touchstart', touchStartHandler);
+element.addEventListener('touchend', touchEndHandler);
+
 // Очистка при выходе
 window.addEventListener('beforeunload', () => {
   if (gameLoopId) {

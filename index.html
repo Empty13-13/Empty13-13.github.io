@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pac-Man</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
 <div id="game-container">
-    <div id="coordinate">X: 0, Y:0</div>
     <div id="score">Score: 0</div>
     <canvas id="canvas"></canvas>
     <div id="gamepad">
@@ -30,7 +32,13 @@
     <div id="welcome">
         <div class="content">
             <div class="text">
-                Чтобы выиграть и получить приз, необходимо собрать все кальяны. И тут ещё другие правила можно расписать
+                Привет!
+            </div>
+            <div class="text">
+                Это кальянный челлендж от «X-GAME».
+            </div>
+            <div class="text">
+                Собери 5 кальянов и получи приз.
             </div>
             <button id="startGame">Начать игру</button>
         </div>
@@ -38,12 +46,23 @@
     <div id="winGame">
         <div class="content">
             <div class="text">
-                Поздравляем, вы выиграли!
-                Ваш код:
+                Ура!<br>
+                <br>
+                Ты собрал все кальяны!
             </div>
-            <div class="code">
-                KALYAN56
+            <div class="text">
+                Твой промокод:<br>
+                <mark class="code">XGAME_WIN</mark><br>
+                <p>
+                    Обменяй его на<br>
+                    скидку  <mark>500₽</mark><br>
+                    в любом магазине<br>
+                    «X-GAME»
+                </p>
+
             </div>
+            <button>Закрыть</button>
+            <a href="" target="_blank">Перейти на наш сайт!</a>
         </div>
     </div>
 </div>

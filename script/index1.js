@@ -236,7 +236,7 @@ function drawMap(timestamp) {
         ctx.drawImage(
           spriteSheet,
           frameX, frameY, 32, 48, // Область источника
-          -bodySizeTile / 2 + (bodySizeTile*0.2), -bodySizeTile / 2 + (bodySizeTile*0.1), bodySizeTile * 0.8, bodySizeTile, // Область назначения
+          -bodySizeTile / 2 + (bodySizeTile * 0.2), -bodySizeTile / 2 + (bodySizeTile * 0.1), bodySizeTile * 0.8, bodySizeTile, // Область назначения
         );
 
         ctx.restore();
@@ -618,9 +618,6 @@ function checkCollisions() {
       TheGame.setState('over');
       scoreElement.textContent = `Собрано кальянов: ${score}`;
       finalScore.textContent = `Ты собрал: ${score}/${numItems}`;
-      if (window.Telegram?.WebApp) {
-        window.Telegram.WebApp.sendData(JSON.stringify({score}));
-      }
     }
   });
 }
@@ -705,14 +702,17 @@ const handleSwipe = () => {
     // Горизонтальный свайп
     if (deltaX > 0) {
       pacman.nextDirection = 'right';
-    } else {
+    }
+    else {
       pacman.nextDirection = 'left';
     }
-  } else {
+  }
+  else {
     // Вертикальный свайп
     if (deltaY > 0) {
       pacman.nextDirection = 'down';
-    } else {
+    }
+    else {
       pacman.nextDirection = 'up';
     }
   }
@@ -721,6 +721,16 @@ const handleSwipe = () => {
 const element = document.querySelector('body');
 element.addEventListener('touchstart', touchStartHandler);
 element.addEventListener('touchend', touchEndHandler);
+
+//Закрытие приложения по нажатию на кнопку
+const closeAppBtn = document.querySelector('#closeAppBtn')
+if (closeAppBtn) {
+  closeAppBtn.addEventListener('click', (e) => {
+    if (window.Telegram?.WebApp) {
+      window.Telegram.WebApp.close()
+    }
+  })
+}
 
 // Очистка при выходе
 window.addEventListener('beforeunload', () => {
@@ -759,10 +769,12 @@ window.addEventListener("load", function() {
         window.Telegram.WebApp.disableVerticalSwipes();
         console.log('disableVerticalSwipes applied');
         return; // Если метод успешен, резервное решение не требуется
-      } catch (e) {
+      }
+      catch (e) {
         console.warn('Failed to apply disableVerticalSwipes:', e);
       }
-    } else {
+    }
+    else {
       console.warn('disableVerticalSwipes not supported');
     }
 
@@ -770,14 +782,16 @@ window.addEventListener("load", function() {
     if (window.Telegram.WebApp.postEvent) {
       try {
         window.Telegram.WebApp.postEvent('web_app_setup_swipe_behavior', false, {
-          allow_vertical_swipe: false
+          allow_vertical_swipe:false,
         });
         console.log('web_app_setup_swipe_behavior applied');
         return; // Если метод успешен, резервное решение не требуется
-      } catch (e) {
+      }
+      catch (e) {
         console.warn('Failed to apply web_app_setup_swipe_behavior:', e);
       }
-    } else {
+    }
+    else {
       console.warn('web_app_setup_swipe_behavior not supported');
     }
   }

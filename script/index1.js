@@ -732,17 +732,26 @@ if (closeAppBtn) {
   })
 }
 
-const testBtn = document.querySelector('#testBtn')
+const testBtn = document.querySelector('#testBtn');
 if (testBtn) {
   testBtn.addEventListener('click', (e) => {
     if (window.Telegram?.WebApp) {
-      window.Telegram.WebApp.sendData(`Твой промокод XGAME_WIN. Обменяй его на скидку в любом магазине "XGAME_WIN"`);
-      testBtn.textContent = 'Работает'
+      try {
+        const data = `Твой промокод XGAME_WIN. Обменяй его на скидку в любом магазине "XGAME_WIN"`;
+        window.Telegram.WebApp.sendData(data);
+        testBtn.textContent = 'Данные отправлены';
+        console.log('Sent data:', data);
+      } catch (error) {
+        testBtn.textContent = 'Ошибка отправки';
+        console.error('Error sending data:', error);
+      }
+    } else {
+      testBtn.textContent = 'Telegram Web App недоступен';
+      console.error('Telegram Web App is not available');
     }
-    else {
-      testBtn.textContent = 'ОШИБКА'
-    }
-  })
+  });
+} else {
+  console.error('Button #testBtn not found');
 }
 
 // Очистка при выходе

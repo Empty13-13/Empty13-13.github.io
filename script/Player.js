@@ -4,7 +4,7 @@ export default class Player {
   y = 1.1
   direction = 'right'
   nextDirection = 'right'
-  speed = 0.1
+  speed = 0.05
   image = ''
   takeObject = false
   frameWidth = 48; // Ширина одного кадра

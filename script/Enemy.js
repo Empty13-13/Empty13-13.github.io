@@ -6,7 +6,7 @@ export default class Enemy {
   y = 1
   direction = 'right'
   nextDirection = 'right'
-  speed = 0.1
+  speed = 0.03
   image = ''
   lastAnimationTime = 0
   animationFrameIndex = 0

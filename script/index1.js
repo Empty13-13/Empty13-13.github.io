@@ -56,10 +56,10 @@ function setStartValues() {
   setRandomItemsToMap(numItems)
   pacman = new Player()
   ghosts = [
-    new Enemy('Blinky', '#f00', {x:12, y:1}, {x:10, y:8}),
-    new Enemy('Pinky', '#ffb8ff', {x:12, y:1}, {x:10, y:8}),
-    new Enemy('Inky', '#0ff', {x:12, y:1}, {x:10, y:8}),
-    new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:10, y:8}),
+    new Enemy('Blinky', '#f00', {x:12, y:1}, {x:12, y:13}),
+    new Enemy('Pinky', '#ffb8ff', {x:12, y:1}, {x:13, y:13}),
+    // new Enemy('Inky', '#0ff', {x:12, y:1}, {x:13, y:12,direction:'up',nextDirection:'up'}),
+    // new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:13, y:11}),
   ];
   score = 0
   scoreElement.textContent = `Кальянов: ${score}/${numItems}`
@@ -241,8 +241,22 @@ function drawMap(timestamp) {
         ctx.restore();
       }
       else if (map[y][x] === 3) {
-        ctx.fillStyle = '#00ff04';
-        ctx.fillRect(x * TheGame.tileSize, y * TheGame.tileSize, TheGame.tileSize, TheGame.tileSize);
+        const centerX = x * TheGame.tileSize;
+        const centerY = y * TheGame.tileSize;
+
+        ctx.save();
+        ctx.translate(centerX + TheGame.tileSize / 2, centerY + TheGame.tileSize / 2);
+
+        // Отрисовка текущего кадра
+        const frameX = 0;
+        let frameY = 576; // Ряд спрайтов
+        ctx.drawImage(
+          spriteSheet,
+          frameX, frameY, wallFrameWeight, wallFrameHeight, // Область источника
+          -TheGame.tileSize / 2, -TheGame.tileSize / 2, TheGame.tileSize, TheGame.tileSize, // Область назначения
+        );
+
+        ctx.restore();
       }
     }
   }
@@ -359,7 +373,7 @@ function nextDirectionHandler(nextDirection, x, y) {
   let localY = Math.floor(y)
   let dx = 0
   let dy = 0
-  const space = 0.11
+  const space = 0.15
 
   switch (nextDirection) {
     case 'right':
@@ -564,26 +578,25 @@ function updateGhosts() {
     }
 
     // Движение призрака
-    const speed = 0.05; // Призраки медленнее Pac-Man
     let nextX = ghost.x;
     let nextY = ghost.y;
 
     switch (ghost.direction) {
       case 'right':
-        nextX += speed;
+        nextX += ghost.speed;
         nextY = Math.floor(nextY) + 0.1
         break;
       case 'left':
-        nextX -= speed;
+        nextX -= ghost.speed;
         nextY = Math.floor(nextY) + 0.1
         break;
       case 'up':
-        nextY -= speed;
+        nextY -= ghost.speed;
         nextX = Math.floor(nextX) + 0.1
         break;
       case 'down':
         nextX = Math.floor(nextX) + 0.1
-        nextY += speed;
+        nextY += ghost.speed;
         break;
     }
 
@@ -672,8 +685,6 @@ const touchStartHandler = (event) => {
   const touch = event.touches[0];
   startX = touch.clientX;
   startY = touch.clientY;
-
-  event.preventDefault();
 };
 
 const touchEndHandler = (event) => {
@@ -734,4 +745,13 @@ window.addEventListener("load", function() {
   drawMap()
   drawPacman()
   drawGhosts()
+
+  if (window.Telegram?.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand(); // Разворачиваем приложение
+    // Настройка поведения свайпов
+    window.Telegram.WebApp.postEvent('web_app_setup_swipe_behavior', false, {
+      allow_vertical_swipe: false
+    });
+  }
 });

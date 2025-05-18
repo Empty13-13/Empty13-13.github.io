@@ -737,10 +737,10 @@ if (testBtn) {
   testBtn.addEventListener('click', (e) => {
     if (window.Telegram?.WebApp) {
       window.Telegram.WebApp.sendData(`Твой промокод XGAME_WIN. Обменяй его на скидку в любом магазине "XGAME_WIN"`);
-      alert(window.Telegram.WebApp.sendData)
+      testBtn.textContent = 'Работает'
     }
     else {
-      alert(1)
+      testBtn.textContent = 'ОШИБКА'
     }
   })
 }

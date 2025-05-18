@@ -746,12 +746,37 @@ window.addEventListener("load", function() {
   drawPacman()
   drawGhosts()
 
+  // Попытка использовать официальные методы Telegram API
   if (window.Telegram?.WebApp) {
     window.Telegram.WebApp.ready();
     window.Telegram.WebApp.expand(); // Разворачиваем приложение
-    // Настройка поведения свайпов
-    window.Telegram.WebApp.postEvent('web_app_setup_swipe_behavior', false, {
-      allow_vertical_swipe: false
-    });
+
+    // Метод 1: disableVerticalSwipes
+    if (window.Telegram.WebApp.disableVerticalSwipes) {
+      try {
+        window.Telegram.WebApp.disableVerticalSwipes();
+        console.log('disableVerticalSwipes applied');
+        return; // Если метод успешен, резервное решение не требуется
+      } catch (e) {
+        console.warn('Failed to apply disableVerticalSwipes:', e);
+      }
+    } else {
+      console.warn('disableVerticalSwipes not supported');
+    }
+
+    // Метод 2: web_app_setup_swipe_behavior
+    if (window.Telegram.WebApp.postEvent) {
+      try {
+        window.Telegram.WebApp.postEvent('web_app_setup_swipe_behavior', false, {
+          allow_vertical_swipe: false
+        });
+        console.log('web_app_setup_swipe_behavior applied');
+        return; // Если метод успешен, резервное решение не требуется
+      } catch (e) {
+        console.warn('Failed to apply web_app_setup_swipe_behavior:', e);
+      }
+    } else {
+      console.warn('web_app_setup_swipe_behavior not supported');
+    }
   }
 });

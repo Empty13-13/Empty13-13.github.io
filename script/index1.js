@@ -732,6 +732,17 @@ if (closeAppBtn) {
   })
 }
 
+const testBtn = document.querySelector('#testBtn')
+if (testBtn) {
+  testBtn.addEventListener('click', (e) => {
+    if (window.Telegram?.WebApp) {
+      if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.sendData(`Твой промокод XGAME_WIN. Обменяй его на скидку в любом магазине "XGAME_WIN"`);
+      }
+    }
+  })
+}
+
 // Очистка при выходе
 window.addEventListener('beforeunload', () => {
   if (gameLoopId) {

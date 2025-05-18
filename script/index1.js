@@ -15,6 +15,7 @@ let numItems = 3
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
+const finalScore = document.getElementById('finalScore');
 
 // Адаптация размера канваса
 function resizeCanvas() {
@@ -616,6 +617,7 @@ function checkCollisions() {
     if (distance < 1) {
       TheGame.setState('over');
       scoreElement.textContent = `Собрано кальянов: ${score}`;
+      finalScore.textContent = `Ты собрал: ${score}/${numItems}`;
       if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.sendData(JSON.stringify({score}));
       }

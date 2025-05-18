@@ -46,13 +46,13 @@ body {
 button {
     background: #2D515D;;
     color: white;
-    padding: 16px 33px;
+    padding: 14px 23px;
     cursor: pointer;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1;
     border: none;
-
+    z-index: 2;
 }
 
 
@@ -81,13 +81,33 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 30px;
-    border: 20px solid #2D515D;
+    padding: 64px;
+    position: relative;
 }
 
 #gameOver .text {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    font-size: 12px;
+    position: relative;
 }
+
+#gameOver .img._1 {
+    position: absolute;
+    left: -40px;
+    top: -20px;
+}
+
+#gameOver .img._2 {
+    position: absolute;
+    right: -30px;
+    top: -23px;
+    width: 25px;
+
+    img {
+        max-width: 100%;
+    }
+}
+
 
 #welcome > .content {
     background: black;
@@ -96,12 +116,31 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 30px;
-    border: 20px solid #2D515D;
+    padding: 60px 80px;
+    position: relative;
 }
 
 #welcome .text {
     margin-bottom: 33px;
+    max-width: 200px;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-align: center;
+    position: relative;
+}
+
+#welcome .img {
+    position: absolute;
+}
+
+#welcome .img._1 {
+    left: -35px;
+    bottom: -50px;
+}
+
+#welcome .img._2 {
+    right: -20px;
+    bottom: -40px;
 }
 
 
@@ -111,10 +150,73 @@ button {
     text-align: center;
 }
 
+
+#winGame .content {
+    position: relative;
+    padding: 100px;
+}
+
+#winGame .text {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
 #winGame .code {
-    margin-top: 25px;
+    padding-top: 15px;
     font-weight: 800;
-    font-size: 30px;
+    display: block;
+    font-size: 24px;
+}
+
+#winGame button {
+    padding: 15px 52px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#winGame .img {
+    position: absolute;
+}
+
+#winGame .img._1 {
+    left: 90%;
+    top: -30px;
+}
+
+#winGame .img._2 {
+    right: 105%;
+    top: 20px;
+}
+
+#winGame .img._3 {
+    left: 90%;
+    top: 90px;
+}
+
+#winGame button {
+    margin-bottom: 20px;
+}
+
+#winGame a {
+    font-size: 11px;
+    width: 100%;
+    display: block;
+    text-decoration: none !important;
+    position: relative;
+}
+
+#winGame a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: white;
 }
 
 
@@ -122,3 +224,29 @@ button {
     color: white;
 }
 
+
+.wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: 1;
+    pointer-events: none;
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+}
+
+mark {
+    background: none;
+    color: yellow;
+    font-weight: 500;
+}

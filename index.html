@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="game-container">
-    <div id="score">Score: 0</div>
+    <div id="score">Кальянов: 0</div>
     <canvas id="canvas"></canvas>
 <!--    <div id="gamepad">-->
 <!--        <div class="content">-->
@@ -23,36 +23,65 @@
 <!--    </div>-->
     <div id="gameOver">
         <div class="content">
-            <div class="text">
-                Игра закончена!
+            <div class="wrapper">
+                <img src="/img/walls.png" alt="">
             </div>
-            <button id="restartBtn">Начать заново</button>
+
+            <div class="text" style="font-size: 14px;">
+                Почти получилось!
+            </div>
+            <div id="finalScore" class="text">
+                Ты собрал: 0/3
+
+                <div class="img _1">
+                    <img src="/img/gameOver.png" alt="">
+                </div>
+
+                <div class="img _2">
+                    <img src="/img/welcome/2.png" alt="">
+                </div>
+            </div>
+            <button id="restartBtn" style="padding: 14px 50px;">Начать заново</button>
         </div>
     </div>
     <div id="welcome">
         <div class="content">
-            <div class="text">
+            <div class="wrapper">
+                <img src="/img/walls.png" alt="">
+            </div>
+            <div class="text" style="font-size: 14px;">
                 Привет!
             </div>
-            <div class="text">
-                Это кальянный челлендж от «X-GAME».
+            <div class="text v1">
+                Это кальянный челлендж <br> от «X-GAME».
+
+                <div class="img _1">
+                    <img src="/img/welcome/1.png" alt="">
+                </div>
             </div>
             <div class="text">
-                Собери 5 кальянов и получи приз.
+                Собери <mark>3</mark> кальяна и получи приз.
+
+                <div class="img _2">
+                    <img src="/img/welcome/2.png" alt="">
+                </div>
             </div>
             <button id="startGame">Начать игру</button>
         </div>
     </div>
     <div id="winGame">
         <div class="content">
+            <div class="wrapper">
+                <img src="/img/walls.png" alt="">
+            </div>
             <div class="text">
-                Ура!<br>
+                <span style="font-size: 20px;">Ура!</span><br>
                 <br>
                 Ты собрал все кальяны!
             </div>
             <div class="text">
                 Твой промокод:<br>
-                <mark class="code">XGAME_WIN</mark><br>
+                <mark class="code">XGAME_WIN</mark>
                 <p>
                     Обменяй его на<br>
                     скидку  <mark>500₽</mark><br>
@@ -60,9 +89,22 @@
                     «X-GAME»
                 </p>
 
+
+                <div class="img _1">
+                    <img src="/img/win.png" alt="">
+                </div>
+
+                <div class="img _2">
+                    <img src="/img/welcome/1.png" alt="">
+                </div>
+                <div class="img _3">
+                    <img src="/img/welcome/2.png" alt="">
+                </div>
             </div>
             <button>Закрыть</button>
-            <a href="" target="_blank">Перейти на наш сайт!</a>
+            <a href="" target="_blank">
+                <mark>Перейти на наш сайт!</mark>
+            </a>
         </div>
     </div>
 </div>

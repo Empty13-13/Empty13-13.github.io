@@ -59,7 +59,7 @@ function setStartValues() {
   ghosts = [
     new Enemy('Blinky', '#f00', {x:12, y:1}, {x:12, y:13}),
     new Enemy('Pinky', '#ffb8ff', {x:12, y:1}, {x:13, y:13}),
-    // new Enemy('Inky', '#0ff', {x:12, y:1}, {x:13, y:12,direction:'up',nextDirection:'up'}),
+    new Enemy('Inky', '#0ff', {x:12, y:1}, {x:13, y:12,direction:'up',nextDirection:'up'}),
     // new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:13, y:11}),
   ];
   score = 0
@@ -614,7 +614,7 @@ function checkCollisions() {
     const dx = pacman.x - ghost.x;
     const dy = pacman.y - ghost.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance < 1) {
+    if (distance < 0.7) {
       TheGame.setState('over');
       scoreElement.textContent = `Собрано кальянов: ${score}`;
       finalScore.textContent = `Ты собрал: ${score}/${numItems}`;

@@ -11,9 +11,13 @@
 </head>
 <body>
 <div id="game-container">
-    <div id="score">Кальянов: 0</div>
+    <div class="topBlock">
+        <img id="logo" src="/img/logo.png" alt="">
+        <div id="score">Кальянов: 0</div>
+    </div>
 <!--    <button id="testBtn">Проверка</button>-->
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas">
+    </canvas>
 <!--    <div id="gamepad">-->
 <!--        <div class="content">-->
 <!--            <button id="upStick">Вверх</button>-->
@@ -31,8 +35,8 @@
             <div class="text" style="font-size: 14px;">
                 Почти получилось!
             </div>
-            <div id="finalScore" class="text">
-                Ты собрал: 0/3
+            <div class="text">
+                <span id="finalScore">Ты собрал: 0/3</span>
 
                 <div class="img _1">
                     <img src="/img/gameOver.png" alt="">
@@ -103,7 +107,7 @@
                 </div>
             </div>
             <button id="closeAppBtn">Закрыть</button>
-            <a href="" target="_blank">
+            <a href="https://xgame.store" target="_blank">
                 <mark>Перейти на наш сайт!</mark>
             </a>
         </div>

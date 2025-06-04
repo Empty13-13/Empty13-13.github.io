@@ -59,7 +59,7 @@ function setStartValues() {
   ghosts = [
     new Enemy('Blinky', '#f00', {x:12, y:1}, {x:12, y:13}),
     new Enemy('Pinky', '#ffb8ff', {x:12, y:1}, {x:13, y:13}),
-    new Enemy('Inky', '#0ff', {x:12, y:1}, {x:13, y:12,direction:'up',nextDirection:'up'}),
+    new Enemy('Inky', '#0ff', {x:12, y:1}, {x:13, y:12, direction:'up', nextDirection:'up'}),
     // new Enemy('Clyde', '#ffb852', {x:12, y:1}, {x:13, y:11}),
   ];
   score = 0
@@ -722,6 +722,21 @@ const element = document.querySelector('body');
 element.addEventListener('touchstart', touchStartHandler);
 element.addEventListener('touchend', touchEndHandler);
 
+const promocode = document.querySelector('#promocode')
+if (promocode) {
+  document.addEventListener('click', async (e) => {
+    await navigator.clipboard.writeText('XGAME_WIN')
+    const copied = document.querySelector('#copied')
+    if (copied) {
+      copied.classList.add('active')
+      setTimeout(() => {
+        copied.classList.remove('active')
+      }, 2000)
+    }
+
+  })
+}
+
 //Закрытие приложения по нажатию на кнопку
 const closeAppBtn = document.querySelector('#closeAppBtn')
 if (closeAppBtn) {
@@ -741,16 +756,19 @@ if (testBtn) {
         window.Telegram.WebApp.sendData(data);
         testBtn.textContent = 'Данные отправлены';
         console.log('Sent data:', data);
-      } catch (error) {
+      }
+      catch (error) {
         testBtn.textContent = 'Ошибка отправки';
         console.error('Error sending data:', error);
       }
-    } else {
+    }
+    else {
       testBtn.textContent = 'Telegram Web App недоступен';
       console.error('Telegram Web App is not available');
     }
   });
-} else {
+}
+else {
   console.error('Button #testBtn not found');
 }
 

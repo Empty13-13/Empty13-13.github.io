@@ -724,14 +724,15 @@ element.addEventListener('touchend', touchEndHandler);
 
 const promocode = document.querySelector('#promocode')
 if (promocode) {
-  document.addEventListener('click', async (e) => {
+  promocode.addEventListener('click', async (e) => {
+    console.log(e.target)
     await navigator.clipboard.writeText('XGAME_WIN')
     const copied = document.querySelector('#copied')
     if (copied) {
       copied.classList.add('active')
       setTimeout(() => {
         copied.classList.remove('active')
-      }, 2000)
+      }, 1000)
     }
 
   })

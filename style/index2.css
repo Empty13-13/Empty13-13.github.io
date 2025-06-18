@@ -201,6 +201,7 @@ button {
     display: block;
     font-size: 24px;
     position: relative;
+    cursor: pointer;
 }
 
 #copied {
@@ -208,10 +209,10 @@ button {
     left: 100%;
     bottom: 0;
     pointer-events: none;
-    transition: transform 2s ease-in-out, opacity 1s ease-in;
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease-in;
     opacity: 0;
     color: black;
-    transform: translateX(-50%) rotate(30deg);
+    transform: translateX(-50%) rotate(20deg);
     font-size: 12px;
     background: white;
     z-index: 999;
@@ -220,7 +221,7 @@ button {
 
 #copied.active {
     opacity: 1;
-    transform: translateX(-50%) translateY(-100%) rotate(30deg);
+    transform: translateX(-50%) translateY(-100%) rotate(20deg);
 }
 
 
